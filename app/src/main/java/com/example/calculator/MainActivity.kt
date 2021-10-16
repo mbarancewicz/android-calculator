@@ -1,5 +1,6 @@
 package com.example.calculator
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -13,5 +14,10 @@ class MainActivity : AppCompatActivity() {
 
     fun closeApp(view: View) {
         finishAndRemoveTask()
+    }
+
+    fun startStandardCalc(view: View) {
+        val intent = Intent(this, StandardCalc::class.java)
+        startActivity(intent)
     }
 }
