@@ -14,9 +14,9 @@ class StandardCalc : AppCompatActivity() {
     }
 
     fun insertNumber(v: View) {
-        val char = v.tag.toString().single()
-        if(isValid(char)) {
-            numbers.add(char)
+        val number = v.tag.toString().single()
+        if(isValidNumber(number)) {
+            numbers.add(number)
             updateDisplay(v)
         }
     }
@@ -37,7 +37,7 @@ class StandardCalc : AppCompatActivity() {
         display.text = numbers.joinToString("")
     }
 
-    private fun isValid(c: Char): Boolean {
+    private fun isValidNumber(c: Char): Boolean {
         val validPoint = c != '.' || !numbers.contains('.')
         val notStartWithZero = if(numbers.isEmpty()) c != '.' else true
         val nonZeroAtBeginning = numbers.isNotEmpty() || c != '0'
