@@ -5,6 +5,10 @@ import android.view.View
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import org.mozilla.javascript.Context;
+import org.mozilla.javascript.Scriptable;
+import android.util.Log;
+
 
 class StandardCalc : AppCompatActivity() {
     private var numbers = mutableListOf<Char>()
@@ -37,7 +41,19 @@ class StandardCalc : AppCompatActivity() {
         }
     }
 
-    fun evaluate(view: View) {}
+    fun evaluate(view: View) {
+        val context = Context.enter() //
+        context.optimizationLevel = -1 // this is required[2]
+
+        val number = view.rootView.findViewById<TextView>(R.id.display).text.toString()
+        val equationString = view.rootView.findViewById<TextView>(R.id.equationDisplay).text.toString() + number
+        Log.d("equation", "" + equationString)
+
+        val scope: Scriptable = context.initStandardObjects()
+        val result = context.evaluateString(scope, equationString, "<cmd>", 1, null)
+        Log.d("your-tag-here", "" + result)
+
+    }
 
 
     fun clear(v: View) {
