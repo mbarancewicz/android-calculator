@@ -6,15 +6,42 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
+
+    <ScrollView
+        android:id="@+id/scrollable"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:scrollbars="vertical"
+        app:layout_constraintHeight_percent="0.07"
+        app:layout_constraintBottom_toTopOf="@+id/display"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/equationDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:gravity="right|center_vertical"
+            android:text=""
+            app:layout_constraintBottom_toTopOf="@+id/display"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </ScrollView>
+
     <TextView
         android:id="@+id/display"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:text=""
         android:gravity="right|center_vertical"
+        android:text=""
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.2"
+        app:layout_constraintHeight_percent="0.13"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -97,7 +124,7 @@
             android:layout_weight="1"
             android:layout_marginStart="1.5dp"
             android:tag="+"
-            android:onClick="evaluate"
+            android:onClick="insertOperator"
             android:text="+" />
 
     </LinearLayout>
@@ -151,7 +178,7 @@
             android:layout_weight="1"
             android:layout_marginStart="1.5dp"
             android:tag="-"
-            android:onClick="evaluate"
+            android:onClick="insertOperator"
             android:text="-" />
     </LinearLayout>
 
@@ -204,7 +231,7 @@
             android:layout_weight="1"
             android:layout_marginStart="1.5dp"
             android:tag="*"
-            android:onClick="evaluate"
+            android:onClick="insertOperator"
             android:text="*" />
 
     </LinearLayout>
@@ -248,7 +275,7 @@
             android:layout_marginStart="1.5dp"
             android:layout_marginEnd="1.5dp"
             android:tag="/"
-            android:onClick="evaluate"
+            android:onClick="insertOperator"
             android:text="/" />
 
         <Button

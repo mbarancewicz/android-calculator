@@ -2,11 +2,13 @@ package com.example.calculator
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class StandardCalc : AppCompatActivity() {
     private var numbers = mutableListOf<Char>()
+    private var equation = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +23,22 @@ class StandardCalc : AppCompatActivity() {
         }
     }
 
+    fun insertOperator(v: View) {
+        val operator = v.tag.toString().single()
+        val operatorRegex = "[+\\-*/]".toRegex()
+
+        if(numbers.isNotEmpty() || !operatorRegex.matches(equation.last())) {
+            equation.add(numbers.joinToString(""))
+            equation.add(operator.toString())
+            updateEquationDisplay(v)
+
+            numbers = mutableListOf()
+            updateDisplay(v)
+        }
+    }
+
     fun evaluate(view: View) {}
+
 
     fun clear(v: View) {
         numbers = mutableListOf()
@@ -30,11 +47,23 @@ class StandardCalc : AppCompatActivity() {
 
     fun clearAll(v: View) {
         clear(v)
+        equation = mutableListOf()
+        updateEquationDisplay(v)
     }
 
     private fun updateDisplay(v: View) {
         val display = v.rootView.findViewById<TextView>(R.id.display)
         display.text = numbers.joinToString("")
+    }
+
+    private fun updateEquationDisplay(v: View) {
+        val equationDisplay = v.rootView.findViewById<TextView>(R.id.equationDisplay)
+        equationDisplay.text = equation.joinToString("")
+
+        val scrollView = v.rootView.findViewById<ScrollView>(R.id.scrollable)
+        scrollView.post {
+            scrollView.fullScroll(View.FOCUS_DOWN)
+        }
     }
 
     private fun isValidNumber(c: Char): Boolean {
