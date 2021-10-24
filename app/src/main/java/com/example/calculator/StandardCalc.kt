@@ -1,13 +1,12 @@
 package com.example.calculator
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import org.mozilla.javascript.Context;
-import org.mozilla.javascript.Scriptable;
-import android.util.Log;
+import org.mariuszgromada.math.mxparser.Expression
 
 
 class StandardCalc : AppCompatActivity() {
@@ -42,17 +41,20 @@ class StandardCalc : AppCompatActivity() {
     }
 
     fun evaluate(view: View) {
-        val context = Context.enter() //
-        context.optimizationLevel = -1 // this is required[2]
-
         val number = view.rootView.findViewById<TextView>(R.id.display).text.toString()
-        val equationString = view.rootView.findViewById<TextView>(R.id.equationDisplay).text.toString() + number
+        equation.add(number)
+        updateEquationDisplay(view)
+
+        val equationString = equation.joinToString("")
+
+        val e = Expression(equationString)
+        val result = e.calculate()
         Log.d("equation", "" + equationString)
+        Log.d("result", "" + result)
 
-        val scope: Scriptable = context.initStandardObjects()
-        val result = context.evaluateString(scope, equationString, "<cmd>", 1, null)
-        Log.d("your-tag-here", "" + result)
-
+        // zostawia slad wyniku w rownaniu
+        numbers = (result.toString().map { c -> c }).toMutableList()
+        updateDisplay(view)
     }
 
 
