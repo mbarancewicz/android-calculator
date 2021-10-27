@@ -52,9 +52,13 @@ class StandardCalc : AppCompatActivity() {
         Log.d("equation", "" + equationString)
         Log.d("result", "" + result)
 
-        // zostawia slad wyniku w rownaniu
-        numbers = (result.toString().map { c -> c }).toMutableList()
+        numbers =
+            if(result.toInt().toDouble() == result)
+                (result.toInt().toString().map { c -> c }).toMutableList()
+            else (result.toString().map { c -> c }).toMutableList()
         updateDisplay(view)
+
+        clearEquation(view)
     }
 
 
@@ -63,10 +67,14 @@ class StandardCalc : AppCompatActivity() {
         updateDisplay(v)
     }
 
-    fun clearAll(v: View) {
-        clear(v)
+    fun clearEquation(v: View) {
         equation = mutableListOf()
         updateEquationDisplay(v)
+    }
+
+    fun clearAll(v: View) {
+        clear(v)
+        clearEquation(v)
     }
 
     private fun updateDisplay(v: View) {
@@ -86,10 +94,15 @@ class StandardCalc : AppCompatActivity() {
 
     private fun isValidNumber(c: Char): Boolean {
         val validPoint = c != '.' || !numbers.contains('.')
-        val notStartWithZero = if(numbers.isEmpty()) c != '.' else true
-        val nonZeroAtBeginning = numbers.isNotEmpty() || c != '0'
+        val nonPointAtBeginning = numbers.isNotEmpty() || c != '.'
+        val properDecimalNumber = if(numbers.size == 1 && numbers[0] == '0') c == '.' else true
         val notTooLong = numbers.size < 15
 
-        return validPoint && notStartWithZero && nonZeroAtBeginning && notTooLong
+        return validPoint && nonPointAtBeginning && properDecimalNumber && notTooLong
     }
 }
+
+// TODO jezeli wynik na ekranie 2 mozliwosci: kontynuowanie obliczeń po operation albo clear
+//  przycisk +/- i backspace
+//  bledy walidacji w toascie
+//  poprawa czcionki i rozmiaru
