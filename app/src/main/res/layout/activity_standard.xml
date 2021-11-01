@@ -73,6 +73,24 @@
             android:text="CA"
             android:onClick="clearAll"/>
 
+        <Button
+            android:id="@+id/button37"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginStart="1.5dp"
+            android:text="Back"
+            android:onClick="clearLast"/>
+
+        <Button
+            android:id="@+id/button38"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginStart="1.5dp"
+            android:text="+/-"
+            android:onClick="toggleSign"/>
+
     </LinearLayout>
 
     <LinearLayout

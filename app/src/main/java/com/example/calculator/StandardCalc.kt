@@ -20,8 +20,13 @@ class StandardCalc : AppCompatActivity() {
 
     fun insertNumber(v: View) {
         val number = v.tag.toString().single()
+        fun replaceZero() = numbers.size == 1 && numbers[0] == '0' && number in '1' .. '9'
+
         if(isValidNumber(number)) {
             numbers.add(number)
+            updateDisplay(v)
+        } else if(replaceZero()) {
+            numbers = mutableListOf(number)
             updateDisplay(v)
         }
     }
@@ -30,35 +35,57 @@ class StandardCalc : AppCompatActivity() {
         val operator = v.tag.toString().single()
         val operatorRegex = "[+\\-*/]".toRegex()
 
+
         if(numbers.isNotEmpty() || !operatorRegex.matches(equation.last())) {
+            if(numbers[numbers.size - 1] == '.')
+                numbers = numbers.take(numbers.size - 1).toMutableList()
+            if(numbers[0] == '-')
+                numbers = (mutableListOf('(') + numbers + mutableListOf(')')).toMutableList()
+
             equation.add(numbers.joinToString(""))
             equation.add(operator.toString())
             updateEquationDisplay(v)
 
             numbers = mutableListOf()
             updateDisplay(v)
+        } else if(numbers.isEmpty() || operatorRegex.matches(equation.last())) {
+            equation = (equation.take(equation.size - 1) + mutableListOf(operator.toString())).toMutableList()
+            updateEquationDisplay(v)
         }
     }
 
     fun evaluate(view: View) {
-        val number = view.rootView.findViewById<TextView>(R.id.display).text.toString()
-        equation.add(number)
-        updateEquationDisplay(view)
+        var number = view.rootView.findViewById<TextView>(R.id.display).text.toString()
+        if(number.toDouble() == 0.0 && equation.isNotEmpty() && equation.last() == "/") {
+            Log.e("math", "division by 0")
+            clear(view)
+            updateDisplay(view)
+        } else {
+            if(number.endsWith(".")) number = number.take(number.length - 1)
+            if(number.startsWith("-")) number = "($number)"
 
-        val equationString = equation.joinToString("")
+            if(number.isEmpty() && equation.isNotEmpty())
+                equation = equation.take(equation.size - 1).toMutableList()
+            else if(number.isEmpty()) equation.add("0")
+            else equation.add(number)
 
-        val e = Expression(equationString)
-        val result = e.calculate()
-        Log.d("equation", "" + equationString)
-        Log.d("result", "" + result)
+            updateEquationDisplay(view)
 
-        numbers =
-            if(result.toInt().toDouble() == result)
-                (result.toInt().toString().map { c -> c }).toMutableList()
-            else (result.toString().map { c -> c }).toMutableList()
-        updateDisplay(view)
+            val equationString = equation.joinToString("")
 
-        clearEquation(view)
+            val e = Expression(equationString)
+            val result = e.calculate()
+            Log.d("equation", "" + equationString)
+            Log.d("result", "" + result)
+
+            numbers =
+                if (result.toInt().toDouble() == result)
+                    (result.toInt().toString().map { c -> c }).toMutableList()
+                else (result.toString().map { c -> c }).toMutableList()
+            updateDisplay(view)
+
+            clearEquation(view)
+        }
     }
 
 
@@ -100,9 +127,25 @@ class StandardCalc : AppCompatActivity() {
 
         return validPoint && nonPointAtBeginning && properDecimalNumber && notTooLong
     }
+
+    fun toggleSign(view: View) {
+        if(numbers.isNotEmpty() && !(numbers.size == 1 && numbers[0] == '0')
+            && !(numbers.size == 2 && numbers[0] == '0' && numbers[1] == '.')) {
+            numbers = if(numbers[0] != '-') (mutableListOf('-') + numbers).toMutableList()
+            else numbers.drop(1).toMutableList()
+        }
+        updateDisplay(view)
+    }
+
+    fun clearLast(view: View) {
+        if(numbers.isNotEmpty()) {
+            numbers = numbers.take(numbers.size - 1).toMutableList()
+            if(numbers.size == 1 && numbers[0] == '-') numbers = mutableListOf()
+        }
+        updateDisplay(view)
+    }
 }
 
-// TODO jezeli wynik na ekranie 2 mozliwosci: kontynuowanie obliczeń po operation albo clear
-//  przycisk +/- i backspace
+// TODO
 //  bledy walidacji w toascie
 //  poprawa czcionki i rozmiaru
