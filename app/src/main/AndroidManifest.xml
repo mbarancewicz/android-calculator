@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Calculator">
         <activity
-            android:name=".StandardCalc"
+            android:name=".StandardCalcActivity"
             android:exported="true"
             android:parentActivityName=".MainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize">
