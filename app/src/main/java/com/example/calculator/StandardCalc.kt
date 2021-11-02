@@ -6,12 +6,13 @@ import android.view.View
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.calculator.backend.Equation
 import org.mariuszgromada.math.mxparser.Expression
 
 
 class StandardCalc : AppCompatActivity() {
     private var numbers = mutableListOf<Char>()
-    private var equation = mutableListOf<String>()
+    private var equation = Equation()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,30 +34,29 @@ class StandardCalc : AppCompatActivity() {
 
     fun insertOperator(v: View) {
         val operator = v.tag.toString().single()
-        val operatorRegex = "[+\\-*/]".toRegex()
 
 
-        if(numbers.isNotEmpty() || !operatorRegex.matches(equation.last())) {
+        if(numbers.isNotEmpty() || !equation.endsWithOperator()) {
             if(numbers[numbers.size - 1] == '.')
                 numbers = numbers.take(numbers.size - 1).toMutableList()
             if(numbers[0] == '-')
                 numbers = (mutableListOf('(') + numbers + mutableListOf(')')).toMutableList()
 
-            equation.add(numbers.joinToString(""))
-            equation.add(operator.toString())
+            equation.append(numbers)
+            equation.append(operator)
             updateEquationDisplay(v)
 
             numbers = mutableListOf()
             updateDisplay(v)
-        } else if(numbers.isEmpty() || operatorRegex.matches(equation.last())) {
-            equation = (equation.take(equation.size - 1) + mutableListOf(operator.toString())).toMutableList()
+        } else if(numbers.isEmpty() || equation.endsWithOperator()) {
+            equation.replaceLastOperator(operator)
             updateEquationDisplay(v)
         }
     }
 
     fun evaluate(view: View) {
         var number = view.rootView.findViewById<TextView>(R.id.display).text.toString()
-        if(number.toDouble() == 0.0 && equation.isNotEmpty() && equation.last() == "/") {
+        if(number.isNotBlank() && equation.isValidDivision(number.toDouble())) {
             Log.e("math", "division by 0")
             clear(view)
             updateDisplay(view)
@@ -65,13 +65,11 @@ class StandardCalc : AppCompatActivity() {
             if(number.startsWith("-")) number = "($number)"
 
             if(number.isEmpty() && equation.isNotEmpty())
-                equation = equation.take(equation.size - 1).toMutableList()
-            else if(number.isEmpty()) equation.add("0")
-            else equation.add(number)
+                equation.dropLast()
+            else if(number.isEmpty()) equation.append("0")
+            else equation.append(number)
 
-            updateEquationDisplay(view)
-
-            val equationString = equation.joinToString("")
+            val equationString = equation.toString()
 
             val e = Expression(equationString)
             val result = e.calculate()
@@ -95,7 +93,7 @@ class StandardCalc : AppCompatActivity() {
     }
 
     fun clearEquation(v: View) {
-        equation = mutableListOf()
+        equation.clearEquation()
         updateEquationDisplay(v)
     }
 
@@ -111,7 +109,7 @@ class StandardCalc : AppCompatActivity() {
 
     private fun updateEquationDisplay(v: View) {
         val equationDisplay = v.rootView.findViewById<TextView>(R.id.equationDisplay)
-        equationDisplay.text = equation.joinToString("")
+        equationDisplay.text = equation.toString()
 
         val scrollView = v.rootView.findViewById<ScrollView>(R.id.scrollable)
         scrollView.post {
