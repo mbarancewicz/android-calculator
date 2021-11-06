@@ -38,7 +38,7 @@ class Equation {
         return number.toString().toDouble() == 0.0 && equation.isNotEmpty() && equation.last() == "/"
     }
 
-    fun isNotEmpty(): Boolean {
+    private fun isNotEmpty(): Boolean {
         return equation.isNotEmpty()
     }
 

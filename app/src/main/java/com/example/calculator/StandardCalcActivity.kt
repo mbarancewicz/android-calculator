@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ScrollView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.calculator.backend.Equation
 import com.example.calculator.backend.Number
@@ -45,7 +46,10 @@ class StandardCalcActivity : AppCompatActivity() {
 
     fun evaluate(view: View) {
         if(number.isNotEmpty() && equation.isValidDivision(number)) {
-            Log.e("math", "division by 0")
+            val text = "Division by 0! Insert another value"
+            val duration = Toast.LENGTH_LONG
+            Toast.makeText(applicationContext, text, duration).show()
+
             clearNumber(view)
             updateDisplay(view)
         } else {
@@ -103,5 +107,4 @@ class StandardCalcActivity : AppCompatActivity() {
 }
 
 // TODO
-//  bledy walidacji w toascie
 //  poprawa czcionki i rozmiaru
