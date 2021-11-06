@@ -1,23 +1,24 @@
-package com.example.calculator
+package com.example.calculator.calc
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.calculator.R
 import com.example.calculator.backend.Equation
 import com.example.calculator.backend.Number
 
+abstract class CalcActivity : AppCompatActivity() {
+    abstract fun setLayout(): Int
 
-class StandardCalcActivity : AppCompatActivity() {
     private var number = Number()
     private var equation = Equation()
-
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_standard)
+        setContentView(setLayout())
     }
 
     fun insertNumber(v: View) {
@@ -105,6 +106,3 @@ class StandardCalcActivity : AppCompatActivity() {
         }
     }
 }
-
-// TODO
-//  poprawa czcionki i rozmiaru

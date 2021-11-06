@@ -1,9 +1,11 @@
 package com.example.calculator
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import com.example.calculator.calc.ExtendedCalcActivity
+import com.example.calculator.calc.StandardCalcActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,6 +19,11 @@ class MainActivity : AppCompatActivity() {
 
     fun startStandardCalc(view: View) {
         val intent = Intent(this, StandardCalcActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun startExtendedCalc(view: View) {
+        val intent = Intent(this, ExtendedCalcActivity::class.java)
         startActivity(intent)
     }
 

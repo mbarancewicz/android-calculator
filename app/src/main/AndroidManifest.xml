@@ -10,15 +10,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Calculator">
         <activity
-            android:name=".AboutActivity"
+            android:name=".calc.ExtendedCalcActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity">
-        <meta-data
+            <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".StandardCalcActivity"
+            android:name=".AboutActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".calc.StandardCalcActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:parentActivityName=".MainActivity">
