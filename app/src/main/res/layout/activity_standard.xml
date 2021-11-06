@@ -23,7 +23,6 @@
             android:id="@+id/equationDisplay"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1.0"
             android:gravity="right|center_vertical"
             android:text=""
             app:layout_constraintBottom_toTopOf="@+id/display"
@@ -62,7 +61,7 @@
             android:layout_weight="1"
             android:layout_marginEnd="1.5dp"
             android:onClick="clearNumber"
-            android:text="C/CE" />
+            android:text="@string/clearClearEverythingButton" />
 
         <Button
             android:id="@+id/button12"
@@ -70,7 +69,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_marginStart="1.5dp"
-            android:text="CA"
+            android:text="@string/clearAllButton"
             android:onClick="clearAll"/>
 
         <Button
@@ -79,7 +78,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_marginStart="1.5dp"
-            android:text="Back"
+            android:text="@string/backButton"
             android:onClick="clearLast"/>
 
         <Button
@@ -88,7 +87,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_marginStart="1.5dp"
-            android:text="+/-"
+            android:text="@string/toggleSignButton"
             android:onClick="toggleSign"/>
 
     </LinearLayout>
@@ -111,7 +110,7 @@
             android:layout_marginEnd="1.5dp"
             android:tag="1"
             android:onClick="insertNumber"
-            android:text="1" />
+            android:text="@string/digitOneButton" />
 
         <Button
             android:id="@+id/button9"
@@ -122,7 +121,7 @@
             android:layout_marginEnd="1.5dp"
             android:tag="2"
             android:onClick="insertNumber"
-            android:text="2" />
+            android:text="@string/digitTwoButton" />
 
         <Button
             android:id="@+id/button8"
@@ -133,7 +132,7 @@
             android:layout_marginEnd="1.5dp"
             android:tag="3"
             android:onClick="insertNumber"
-            android:text="3" />
+            android:text="@string/digitThreeButton" />
 
         <Button
             android:id="@+id/button7"
@@ -143,7 +142,7 @@
             android:layout_marginStart="1.5dp"
             android:tag="+"
             android:onClick="insertOperator"
-            android:text="+" />
+            android:text="@string/operatorPlusButton" />
 
     </LinearLayout>
 
@@ -165,7 +164,7 @@
             android:layout_marginEnd="1.5dp"
             android:tag="4"
             android:onClick="insertNumber"
-            android:text="4" />
+            android:text="@string/digitFourButton" />
 
         <Button
             android:id="@+id/button15"
@@ -176,7 +175,7 @@
             android:layout_marginEnd="1.5dp"
             android:tag="5"
             android:onClick="insertNumber"
-            android:text="5" />
+            android:text="@string/digitFiveButton" />
 
         <Button
             android:id="@+id/button16"
@@ -187,7 +186,7 @@
             android:layout_marginEnd="1.5dp"
             android:tag="6"
             android:onClick="insertNumber"
-            android:text="6" />
+            android:text="@string/digitSixButton" />
 
         <Button
             android:id="@+id/button17"
@@ -197,7 +196,7 @@
             android:layout_marginStart="1.5dp"
             android:tag="-"
             android:onClick="insertOperator"
-            android:text="-" />
+            android:text="@string/operatorMinusButton" />
     </LinearLayout>
 
     <LinearLayout
@@ -218,7 +217,7 @@
             android:layout_marginEnd="1.5dp"
             android:tag="7"
             android:onClick="insertNumber"
-            android:text="7" />
+            android:text="@string/digitSevenButton" />
 
         <Button
             android:id="@+id/button19"
@@ -229,7 +228,7 @@
             android:layout_marginEnd="1.5dp"
             android:tag="8"
             android:onClick="insertNumber"
-            android:text="8" />
+            android:text="@string/digitEightButton" />
 
         <Button
             android:id="@+id/button20"
@@ -240,7 +239,7 @@
             android:layout_marginEnd="1.5dp"
             android:tag="9"
             android:onClick="insertNumber"
-            android:text="9" />
+            android:text="@string/digitNineButton" />
 
         <Button
             android:id="@+id/button25"
@@ -250,7 +249,7 @@
             android:layout_marginStart="1.5dp"
             android:tag="*"
             android:onClick="insertOperator"
-            android:text="*" />
+            android:text="@string/operatorMultiplyButton" />
 
     </LinearLayout>
 
@@ -272,7 +271,7 @@
             android:layout_marginEnd="1.5dp"
             android:tag="0"
             android:onClick="insertNumber"
-            android:text="0" />
+            android:text="@string/digitZeroButton" />
 
         <Button
             android:id="@+id/button23"
@@ -283,7 +282,7 @@
             android:layout_marginEnd="1.5dp"
             android:tag="."
             android:onClick="insertNumber"
-            android:text="." />
+            android:text="@string/digitPointButton" />
 
         <Button
             android:id="@+id/button21"
@@ -294,7 +293,7 @@
             android:layout_marginEnd="1.5dp"
             android:tag="/"
             android:onClick="insertOperator"
-            android:text="/" />
+            android:text="@string/operatorDivisionButton" />
 
         <Button
             android:id="@+id/button24"
@@ -304,7 +303,7 @@
             android:layout_marginStart="1.5dp"
             android:tag="="
             android:onClick="evaluate"
-            android:text="=" />
+            android:text="@string/evaluateButton" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

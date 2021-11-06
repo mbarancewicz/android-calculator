@@ -1,3 +1,28 @@
 <resources>
     <string name="app_name">Calculator</string>
+    <string name="ainActivTitle">Calculator</string>
+    <string name="standardCalcButton">Standard</string>
+    <string name="extendedCalcButton">Extended</string>
+    <string name="aboutButton">About</string>
+    <string name="quitButton">QUIT</string>
+    <string name="clearClearEverythingButton">C/CE</string>
+    <string name="clearAllButton">CA</string>
+    <string name="backButton">Back</string>
+    <string name="toggleSignButton">+/-</string>
+    <string name="digitOneButton">1</string>
+    <string name="digitTwoButton">2</string>
+    <string name="digitThreeButton">3</string>
+    <string name="operatorPlusButton">+</string>
+    <string name="digitFourButton">4</string>
+    <string name="digitFiveButton">5</string>
+    <string name="digitSixButton">6</string>
+    <string name="operatorMinusButton">-</string>
+    <string name="digitSevenButton">7</string>
+    <string name="digitEightButton">8</string>
+    <string name="digitNineButton">9</string>
+    <string name="operatorMultiplyButton">*</string>
+    <string name="digitZeroButton">0</string>
+    <string name="digitPointButton">.</string>
+    <string name="operatorDivisionButton">/</string>
+    <string name="evaluateButton">=</string>
 </resources>
