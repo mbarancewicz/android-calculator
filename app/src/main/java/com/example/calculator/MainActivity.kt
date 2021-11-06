@@ -19,4 +19,9 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, StandardCalcActivity::class.java)
         startActivity(intent)
     }
+
+    fun startAbout(view: View) {
+        val intent = Intent(this, AboutActivity::class.java)
+        startActivity(intent)
+    }
 }

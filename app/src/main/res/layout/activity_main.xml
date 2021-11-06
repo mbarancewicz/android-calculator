@@ -42,7 +42,8 @@
             android:id="@+id/button3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/aboutButton" />
+            android:text="@string/aboutButton"
+            android:onClick="startAbout"/>
 
         <Button
             android:id="@+id/quitButton"

@@ -10,10 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Calculator">
         <activity
+            android:name=".AboutActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity">
+        <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
             android:name=".StandardCalcActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
-            android:parentActivityName=".MainActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />

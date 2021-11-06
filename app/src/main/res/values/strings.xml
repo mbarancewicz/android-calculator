@@ -25,4 +25,10 @@
     <string name="digitPointButton">.</string>
     <string name="operatorDivisionButton">/</string>
     <string name="evaluateButton">=</string>
+    <string name="applicationNameLabel">Application name</string>
+    <string name="applicationNameValue">Calculator</string>
+    <string name="authorLabel">Author</string>
+    <string name="authorValue">Maciej Barancewicz</string>
+    <string name="descriptionLabel">Description</string>
+    <string name="descriptionValue">Calculator application allowing calculate basic and complex mathematical equations.</string>
 </resources>
