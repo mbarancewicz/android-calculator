@@ -108,8 +108,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_marginEnd="1.5dp"
-            android:tag="0"
-            android:onClick="insertNumber"
+            android:tag="sin"
+            android:onClick="insertOperator"
             android:text="sin" />
 
         <Button
@@ -119,8 +119,8 @@
             android:layout_weight="1"
             android:layout_marginStart="1.5dp"
             android:layout_marginEnd="1.5dp"
-            android:tag="."
-            android:onClick="insertNumber"
+            android:tag="cos"
+            android:onClick="insertOperator"
             android:text="cos" />
 
         <Button
@@ -130,7 +130,7 @@
             android:layout_weight="1"
             android:layout_marginStart="1.5dp"
             android:layout_marginEnd="1.5dp"
-            android:tag="/"
+            android:tag="tan"
             android:onClick="insertOperator"
             android:text="tan" />
 
@@ -140,8 +140,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_marginStart="1.5dp"
-            android:tag="="
-            android:onClick="evaluate"
+            android:tag="sqrt"
+            android:onClick="insertOperator"
             android:text="sqrt" />
     </LinearLayout>
 
@@ -161,8 +161,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_marginEnd="1.5dp"
-            android:tag="0"
-            android:onClick="insertNumber"
+            android:tag="ln"
+            android:onClick="insertOperator"
             android:text="ln" />
 
         <Button
@@ -172,8 +172,8 @@
             android:layout_weight="1"
             android:layout_marginStart="1.5dp"
             android:layout_marginEnd="1.5dp"
-            android:tag="."
-            android:onClick="insertNumber"
+            android:tag="log"
+            android:onClick="insertOperator"
             android:text="log" />
 
         <Button
@@ -183,7 +183,7 @@
             android:layout_weight="1"
             android:layout_marginStart="1.5dp"
             android:layout_marginEnd="1.5dp"
-            android:tag="/"
+            android:tag="power"
             android:onClick="insertOperator"
             android:text="x^y" />
 
@@ -193,8 +193,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_marginStart="1.5dp"
-            android:tag="="
-            android:onClick="evaluate"
+            android:tag="percent"
+            android:onClick="insertOperator"
             android:text="%" />
     </LinearLayout>
 
