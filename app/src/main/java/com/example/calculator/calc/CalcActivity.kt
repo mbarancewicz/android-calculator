@@ -28,6 +28,7 @@ abstract class CalcActivity : AppCompatActivity() {
         updateDisplay(v)
     }
 
+    // fixme for extended 2 parameters it should be overridden
     fun insertOperator(v: View) {
         val operator = v.tag.toString().single()
 
@@ -45,6 +46,7 @@ abstract class CalcActivity : AppCompatActivity() {
         updateEquationDisplay(v)
     }
 
+    // fixme at least part of it should be overridden
     fun evaluate(view: View) {
         if(number.isNotEmpty() && equation.isValidDivision(number)) {
             val text = "Division by 0! Insert another value"
@@ -89,7 +91,6 @@ abstract class CalcActivity : AppCompatActivity() {
         equation.clearEquation()
         updateEquationDisplay(v)
     }
-
 
     private fun updateDisplay(v: View) {
         val display = v.rootView.findViewById<TextView>(R.id.display)
