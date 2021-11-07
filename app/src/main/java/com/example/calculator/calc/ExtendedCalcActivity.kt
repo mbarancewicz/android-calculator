@@ -22,8 +22,9 @@ class ExtendedCalcActivity : CalcActivity() {
             super.updateDisplay(v)
         } else if(number.isEmpty() && !extendedOperators.matches(operator) && equation.endsWithExtendedOperator()) {
             equation.append(operator)
-        } else if(!equation.endsWithExtendedOperator())
+        } else if(!equation.endsWithExtendedOperator() && !extendedOperators.matches(operator))
             super.insertOperator(v)
+        else toastError()
         updateEquationDisplay(v)
     }
 }

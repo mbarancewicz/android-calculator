@@ -38,7 +38,6 @@ abstract class CalcActivity : AppCompatActivity() {
 
             equation.append(operator)
             number.clearNumber()
-
             updateDisplay(v)
         } else if(number.isEmpty() && equation.endsWithOperator()) {
             equation.replaceLastOperator(operator)
@@ -48,21 +47,23 @@ abstract class CalcActivity : AppCompatActivity() {
 
     // fixme at least part of it should be overridden
     fun evaluate(view: View) {
-        if(number.isNotEmpty() && equation.isValidDivision(number)) {
-            val text = "Division by 0! Insert another value"
-            val duration = Toast.LENGTH_LONG
-            Toast.makeText(applicationContext, text, duration).show()
+        if(number.isNotEmpty() && equation.isInvalidDivision(number)) {
+            toastError()
 
             clearNumber(view)
             updateDisplay(view)
         } else {
             number.formatNumberForEquation()
-
             val result = equation.evaluate(number)
-            number = Number(result)
 
-            clearEquation(view)
-            updateDisplay(view)
+            if(result.isNaN()) {
+                toastError()
+                clearAll(view)
+            } else {
+                number = Number(result)
+                clearEquation(view)
+                updateDisplay(view)
+            }
         }
     }
 
@@ -105,5 +106,11 @@ abstract class CalcActivity : AppCompatActivity() {
         scrollView.post {
             scrollView.fullScroll(View.FOCUS_DOWN)
         }
+    }
+
+    fun toastError() {
+        val text = "Invalid input"
+        val duration = Toast.LENGTH_SHORT
+        Toast.makeText(applicationContext, text, duration).show()
     }
 }

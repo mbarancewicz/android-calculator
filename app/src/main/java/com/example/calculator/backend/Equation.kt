@@ -6,6 +6,7 @@ import org.mariuszgromada.math.mxparser.Expression
 class Equation {
     private var equation: MutableList<String> = mutableListOf()
     private val operatorRegex = "[+\\-*/]".toRegex()
+    private val extendedOperators = "(.+?)?(sin|cos|tan|ln|sqrt)\\((.+?)\\)$".toRegex()
 
     fun append(value: String) {
         equation.add(value)
@@ -34,7 +35,7 @@ class Equation {
         equation =  mutableListOf()
     }
 
-    fun isValidDivision(number: Number): Boolean {
+    fun isInvalidDivision(number: Number): Boolean {
         return number.toString().toDouble() == 0.0 && equation.isNotEmpty() && equation.last() == "/"
     }
 
@@ -43,8 +44,8 @@ class Equation {
     }
 
     fun evaluate(number: Number): Double {
-        if(number.isEmpty() && isNotEmpty()) dropLast()
-        else if(number.isEmpty()) append("0")
+        if(number.isEmpty() && isNotEmpty() && !extendedOperators.matches(toString())) dropLast()
+        else if(number.isEmpty() && !extendedOperators.matches(toString())) append("0")
         else append(number.toString())
 
         val expression = Expression(toString())
@@ -56,7 +57,6 @@ class Equation {
     }
 
     fun endsWithExtendedOperator(): Boolean {
-        val extendedOperators = "(.+?)?(sin|cos|tan|ln|sqrt)\\((.+?)\\)$".toRegex()
         return toString().length >= 6 && extendedOperators.matches(toString())
     }
 }
