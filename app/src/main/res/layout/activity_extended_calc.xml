@@ -110,7 +110,7 @@
             android:layout_marginEnd="1.5dp"
             android:tag="sin"
             android:onClick="insertOperator"
-            android:text="sin" />
+            android:text="@string/operatorSinusButton" />
 
         <Button
             android:id="@+id/button223"
@@ -121,7 +121,7 @@
             android:layout_marginEnd="1.5dp"
             android:tag="cos"
             android:onClick="insertOperator"
-            android:text="cos" />
+            android:text="@string/operatorCosinusButton" />
 
         <Button
             android:id="@+id/button214"
@@ -132,7 +132,7 @@
             android:layout_marginEnd="1.5dp"
             android:tag="tan"
             android:onClick="insertOperator"
-            android:text="tan" />
+            android:text="@string/operatorTangensButton" />
 
         <Button
             android:id="@+id/button246"
@@ -142,7 +142,7 @@
             android:layout_marginStart="1.5dp"
             android:tag="sqrt"
             android:onClick="insertOperator"
-            android:text="sqrt" />
+            android:text="@string/operatorSquareRootButton" />
     </LinearLayout>
 
     <LinearLayout
@@ -163,7 +163,7 @@
             android:layout_marginEnd="1.5dp"
             android:tag="ln"
             android:onClick="insertOperator"
-            android:text="ln" />
+            android:text="@string/operatorNaturalLogarithmButton" />
 
         <Button
             android:id="@+id/button228"
@@ -174,7 +174,7 @@
             android:layout_marginEnd="1.5dp"
             android:tag="log"
             android:onClick="insertOperator"
-            android:text="log" />
+            android:text="@string/operatorDecimalLogarithmButton" />
 
         <Button
             android:id="@+id/button234"
@@ -185,7 +185,7 @@
             android:layout_marginEnd="1.5dp"
             android:tag="^"
             android:onClick="insertOperator"
-            android:text="x^y" />
+            android:text="@string/operatorPowerButton" />
 
         <Button
             android:id="@+id/button256"
@@ -195,7 +195,7 @@
             android:layout_marginStart="1.5dp"
             android:tag="%"
             android:onClick="insertOperator"
-            android:text="%" />
+            android:text="@string/operatorPercentButton" />
     </LinearLayout>
 
     <LinearLayout

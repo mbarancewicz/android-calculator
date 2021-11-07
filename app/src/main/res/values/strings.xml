@@ -31,4 +31,12 @@
     <string name="authorValue">Maciej Barancewicz</string>
     <string name="descriptionLabel">Description</string>
     <string name="descriptionValue">Calculator application allowing calculate basic and complex mathematical equations.</string>
+    <string name="operatorPercentButton">%</string>
+    <string name="operatorPowerButton">x^y</string>
+    <string name="operatorDecimalLogarithmButton">log</string>
+    <string name="operatorNaturalLogarithmButton">ln</string>
+    <string name="operatorSquareRootButton">sqrt</string>
+    <string name="operatorTangensButton">tan</string>
+    <string name="operatorCosinusButton">cos</string>
+    <string name="operatorSinusButton">sin</string>
 </resources>
