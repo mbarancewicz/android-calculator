@@ -193,7 +193,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_marginStart="1.5dp"
-            android:tag="percent"
+            android:tag="%"
             android:onClick="insertOperator"
             android:text="%" />
     </LinearLayout>
