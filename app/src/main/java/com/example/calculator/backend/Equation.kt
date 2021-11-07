@@ -54,4 +54,9 @@ class Equation {
     override fun toString(): String {
         return equation.joinToString("")
     }
+
+    fun endsWithExtendedOperator(): Boolean {
+        val extendedOperators = "(.+?)?(sin|cos|tan|ln|sqrt)\\((.+?)\\)$".toRegex()
+        return toString().length >= 6 && extendedOperators.matches(toString())
+    }
 }

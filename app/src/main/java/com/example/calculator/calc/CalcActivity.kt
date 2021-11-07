@@ -13,8 +13,8 @@ import com.example.calculator.backend.Number
 abstract class CalcActivity : AppCompatActivity() {
     abstract fun setLayout(): Int
 
-    private var number = Number()
-    private var equation = Equation()
+    protected var number = Number()
+    protected var equation = Equation()
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +29,7 @@ abstract class CalcActivity : AppCompatActivity() {
     }
 
     // fixme for extended 2 parameters it should be overridden
-    fun insertOperator(v: View) {
+    open fun insertOperator(v: View) {
         val operator = v.tag.toString().single()
 
         if(number.isNotEmpty()) {
@@ -87,17 +87,17 @@ abstract class CalcActivity : AppCompatActivity() {
         updateDisplay(view)
     }
 
-    private fun clearEquation(v: View) {
+    protected fun clearEquation(v: View) {
         equation.clearEquation()
         updateEquationDisplay(v)
     }
 
-    private fun updateDisplay(v: View) {
+    protected fun updateDisplay(v: View) {
         val display = v.rootView.findViewById<TextView>(R.id.display)
         display.text = number.toString()
     }
 
-    private fun updateEquationDisplay(v: View) {
+    protected fun updateEquationDisplay(v: View) {
         val equationDisplay = v.rootView.findViewById<TextView>(R.id.equationDisplay)
         equationDisplay.text = equation.toString()
 
