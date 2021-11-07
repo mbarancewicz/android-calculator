@@ -29,5 +29,4 @@ class ExtendedCalcActivity : CalcActivity() {
     }
 }
 
-// todo implement extended operators
-//  implement operator taking 2 values (log, power)
+// todo implement operators % log power

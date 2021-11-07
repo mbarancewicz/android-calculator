@@ -45,7 +45,6 @@ abstract class CalcActivity : AppCompatActivity() {
         updateEquationDisplay(v)
     }
 
-    // fixme at least part of it should be overridden
     fun evaluate(view: View) {
         if(number.isNotEmpty() && equation.isInvalidDivision(number)) {
             toastError()
