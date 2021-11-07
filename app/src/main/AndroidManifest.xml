@@ -11,6 +11,7 @@
         android:theme="@style/Theme.Calculator">
         <activity
             android:name=".calc.ExtendedCalcActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="false"
             android:parentActivityName=".MainActivity">
             <meta-data

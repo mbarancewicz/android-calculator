@@ -10,7 +10,7 @@ class ExtendedCalcActivity : CalcActivity() {
 
     override fun insertOperator(v: View) {
         val operator = v.tag.toString()
-        val extendedOperators = "sin|cos|tan|ln|sqrt".toRegex()
+        val extendedOperators = "sin|cos|tan|ln|sqrt|log".toRegex()
         if(number.isNotEmpty() && operator == "%") {
             val localEquation = Equation()
             number.formatNumberForEquation()
@@ -38,5 +38,3 @@ class ExtendedCalcActivity : CalcActivity() {
         updateEquationDisplay(v)
     }
 }
-
-// todo implement operators % log power

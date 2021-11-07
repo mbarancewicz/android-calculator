@@ -28,7 +28,6 @@ abstract class CalcActivity : AppCompatActivity() {
         updateDisplay(v)
     }
 
-    // fixme for extended 2 parameters it should be overridden
     open fun insertOperator(v: View) {
         val operator = v.tag.toString().single()
 
